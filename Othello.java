@@ -11,10 +11,10 @@ public class Othello
 {
 	//Constants
 	final int BOARDSIZE = 8;
-	final int FREE = 'f';
+	final int BLANK = ' ';
 	char PLAYER;
 	char COMPUTER;
-	char[][] board;
+	Board board;
 
 	public static void main(String[] args)
 	{
@@ -40,35 +40,46 @@ public class Othello
 		}
 
 		//Initialize the gameboard
-		board = new char[BOARDSIZE][BOARDSIZE];
-		initializeboard();
+		board = new Board(PLAYER, COMPUTER, BOARDSIZE);
 
 		//Let the computer go first if it's supposed to
 		if(computerGoesFirst)
 		{
 			int[] coords = computerMove();
-			placepiece(coords[0], coords[1], COMPUTER);
+			board.input(coords[0], coords[1], COMPUTER);
 		}
 
 		int x, y;
+		boolean playerPass;
+		boolean computerPass;
 
-		//Loop through oop through game here
-		while(!gameover())
+		//Loop through game here
+		while(!gameover(playerPass, computerPass))
 		{
+			playerPass = false;
+			computerPass = false;
 			//Player moves
 			String pMoveInput = scan.nextLine();
-			String[] move = pMoveInput.split(" ");
-			x = Integer.parseInt(move[0]);
-			y = Integer.parseInt(move[1]);
-
-			if(!pMoveInput.equalsIgnoreCase("pass") && isValidMove(x, y, PLAYER))
+			playerPass = pMoveInput.equalsIgnoreCase("pass");
+			if(!playerPass){
+				String[] move = pMoveInput.split(" ");
+				x = Integer.parseInt(move[0]);
+				y = Integer.parseInt(move[1]);
+			}
+			if(!playerPass && isValidMove(x, y, PLAYER))
 			{
-				placepiece(x, y, PLAYER);
+				board.input(x, y, PLAYER);
 			}
 
 			//Computer Move
 			int[] coords = computerMove();
-			placepiece(coords[0], coords[1], COMPUTER);
+			computerPass = coords[0] = -1;
+			if(!computerPass)
+			{
+				board.input(coords[0], coords[1], COMPUTER);
+			}else{
+				System.out.println("pass");
+			}
 		}
 
 		announceGameWinner();
@@ -85,11 +96,6 @@ public class Othello
 
 		coords[0] = x; coords[1] = y;
 		return coords;
-	}
-
-	public static void initializeboard()
-	{ //Sets the middle initial pieces on the board
-
 	}
 
 	public static boolean gameover()

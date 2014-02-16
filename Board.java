@@ -4,17 +4,34 @@ public class Board
 {
 	char[][] chart;
 	final char BLANK = ' ';
-	public Board()
+	final char PLAYER;
+	final char COMPUTER;
+	final char BOARDSIZE;
+
+	public Board(char playerColor, char computerColor, int size)
 	{
-		chart = new char[8][8];
-		for(int a = 0; a<8; a++)
+		this.PLAYER = playerColor;
+		this.COMPUTER = computerColor;
+		this.BOARDSIZE = size;
+
+		chart = new char[size][size];
+
+		for(int a = 0; a<size; a++)
 		{
-			for(int b = 0; b<8; b++)
+			for(int b = 0; b<size; b++)
 			{
 				chart[a][b]=BLANK;
 			}
 		}
+
+		//Initial positions
+		chart[3][3]=PLAYER;
+		chart[4][4]=PLAYER;
+		chart[3][4]=COMPUTER;
+		chart[4][3]=COMPUTER;
 	}
+
+	//Makes a move at the (x,y) position given for a given player.
 	public void input(int x, int y, char color)
 	{
 		chart[x][y]=color;
@@ -22,6 +39,7 @@ public class Board
 	}
 	private void flip(int x, int y, char color) 
 	{
+		//First check what directions can be flipped
 		boolean left = false;
 		boolean right = false;
 		boolean up = false;
@@ -128,7 +146,9 @@ public class Board
 				break;
 			}
 		}
-		//checks each direction
+
+
+		//Flip each direction that we've found can be flipped.
 		if(left)
 			for(int a = x; a>=0; a--)
 			{
@@ -226,6 +246,7 @@ public class Board
 			}
 		}
 	}
+
 	public void print()
 	{
 		for(int y = 0; y<8; y++)
@@ -237,6 +258,7 @@ public class Board
 			System.out.println();
 		}
 	}
+
 	public boolean isLegalMove(int x, int y, char color)
 	{
 		for(int a = x-1; a>=0; a--)
@@ -329,6 +351,8 @@ public class Board
 		}
 		return false;
 	}
+
+	//Returns the number of pieces on the board of a given color.
 	public int getCount(char color)
 	{
 		int count = 0;
