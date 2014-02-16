@@ -9,27 +9,27 @@ import java.util.Scanner;
 
 public class Othello
 {
-	char[][] board;
+	//Constants
+	final int BOARDSIZE = 8;
+	final int FREE = 'f';
 	char PLAYER;
 	char COMPUTER;
+	char[][] board;
 
 	public static void main(String[] args)
 	{
-		//Constants
-		final int BOARDSIZE = 8;
-		final int FREE = 'f';
-
 		//Initialize Scanner and get input
 		Scanner scan = new Scanner(System.in);
 		String inputStr = scan.nextLine();
 
 		//Parse the input string
-		String[] input = inputStr.explode(" ");
+		String[] input = inputStr.split(" ");
 		boolean computerGoesFirst = (input[1].charAt(0).toLower() == 'b');
 		int depthLimit = Integer.parseInt(input[2]);
 		int timeLimit1 = Integer.parseInt(input[3]);
 		int timeLimit2 = Integer.parseInt(input[4]);
 
+		//Set the pieces for the computer and player
 		if(computerGoesFirst)
 		{
 			COMPUTER = 'b';
@@ -43,17 +43,25 @@ public class Othello
 		board = new char[BOARDSIZE][BOARDSIZE];
 		initializeboard();
 
+		//Let the computer go first if it's supposed to
 		if(computerGoesFirst)
 		{
 			int[] coords = computerMove();
 			placepiece(coords[0], coords[1], COMPUTER);
 		}
 
-		//Loop through game here
-		while(!gameover(board))
+		int x, y;
+
+		//Loop through oop through game here
+		while(!gameover())
 		{
 			//Player moves
-			if(isValidMove(x, y, PLAYER))
+			String pMoveInput = scan.nextLine();
+			String[] move = pMoveInput.split(" ");
+			x = Integer.parseInt(move[0]);
+			y = Integer.parseInt(move[1]);
+
+			if(!pMoveInput.equalsIgnoreCase("pass") && isValidMove(x, y, PLAYER))
 			{
 				placepiece(x, y, PLAYER);
 			}
@@ -72,7 +80,8 @@ public class Othello
 		int y;
 		int[] coords = new int[2];
 
-		//Set x and y to the coordinates of the computer's next move
+		//Set x and y to the coordinates of the computer's next move here
+		    //NOTE: How do we consider if the computer wants to pass?
 
 		coords[0] = x; coords[1] = y;
 		return coords;
