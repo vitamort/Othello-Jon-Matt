@@ -32,7 +32,7 @@ public class Board
 		boolean downleft = false;
 		//variables saying weather or not a given direction should 
 		//have pieces flipped
-		for(int a = x; a>=0; a--)
+		for(int a = x-1; a>=0; a--)
 		{
 			if(chart[a][y]==BLANK)
 				break;
@@ -42,7 +42,7 @@ public class Board
 				break;
 			}
 		}
-		for(int a = x; a<8; a++)
+		for(int a = x+1; a<8; a++)
 		{
 			if(chart[a][y]==BLANK)
 				break;
@@ -52,7 +52,7 @@ public class Board
 				break;
 			}
 		}
-		for(int a = y; a>=0; a--)
+		for(int a = y-1; a>=0; a--)
 		{
 			if(chart[x][a]==BLANK)
 				break;
@@ -62,7 +62,7 @@ public class Board
 				break;
 			}
 		}
-		for(int a = y; a<8; a++)
+		for(int a = y+1; a<8; a++)
 		{
 			if(chart[x][a]==BLANK)
 				break;
@@ -134,36 +134,36 @@ public class Board
 			{
 				if(chart[a][y]==color)
 				{
-					left = true;
 					break;
 				}
+                chart[a][y] = color;
 			}
 		if(right)
 			for(int a = x; a<8; a++)
 			{
 				if(chart[a][y]==color)
 				{
-					right = true;
 					break;
 				}
+                chart[a][y] = color;
 			}
 		if(down)
 			for(int a = y; a>=0; a--)
 			{
 				if(chart[x][a]==color)
 				{
-					down = true;
 					break;
 				}
+                chart[x][a]=color;
 			}
 		if(up)
 			for(int a = y; a<8; a++)
 			{
 				if(chart[x][a]==color)
 				{
-					up = true;
 					break;
 				}
+                chart[x][a]=color;
 			}
 		if(upright)
 		{
@@ -175,9 +175,9 @@ public class Board
 				c=y+a;
 				if(chart[b][c]==color)
 				{
-					upright=true;
 					break;
 				}
+                chart[b][c]=color;
 			}
 		}
 		if(upleft)
@@ -190,9 +190,9 @@ public class Board
 				c=y+a;
 				if(chart[b][c]==color)
 				{
-					upleft=true;
 					break;
 				}
+                chart[b][c]=color;
 			}
 		}
 		if(downright)
@@ -205,9 +205,9 @@ public class Board
 				c=y-a;
 				if(chart[b][c]==color)
 				{
-					downright=true;
 					break;
 				}
+                chart[b][c]=color;
 			}
 		}
 		if(downleft)
@@ -220,9 +220,9 @@ public class Board
 				c=y-a;
 				if(chart[b][c]==color)
 				{
-					downleft=true;
 					break;
 				}
+                chart[b][c]=color;
 			}
 		}
 	}
@@ -239,7 +239,7 @@ public class Board
 	}
 	public boolean isLegalMove(int x, int y, char color)
 	{
-		for(int a = x; a>=0; a--)
+		for(int a = x-1; a>=0; a--)
 		{
 			if(chart[a][y]==BLANK)
 				break;
@@ -248,7 +248,7 @@ public class Board
 				return true;
 			}
 		}
-		for(int a = x; a<8; a++)
+		for(int a = x+1; a<8; a++)
 		{
 			if(chart[a][y]==BLANK)
 				break;
@@ -257,7 +257,7 @@ public class Board
 				return true;
 			}
 		}
-		for(int a = y; a>=0; a--)
+		for(int a = y-1; a>=0; a--)
 		{
 			if(chart[x][a]==BLANK)
 				break;
@@ -266,7 +266,7 @@ public class Board
 				return true;
 			}
 		}
-		for(int a = y; a<8; a++)
+		for(int a = y+1; a<8; a++)
 		{
 			if(chart[x][a]==BLANK)
 				break;
