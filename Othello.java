@@ -54,6 +54,7 @@ public class Othello
 		int x=0, y=0;
 		boolean playerPass=false;
 		boolean computerPass=false;
+		boolean legalMove = true;
 
 		//Loop through game here
 		while(!gameover(playerPass, computerPass))
@@ -61,17 +62,26 @@ public class Othello
 			playerPass = false;
 			computerPass = false;
 			//Player moves
-			String pMoveInput = scan.nextLine();
-			playerPass = pMoveInput.equalsIgnoreCase("pass");
-			if(!playerPass){
-				String[] move = pMoveInput.split(" ");
-				x = Integer.parseInt(move[0]);
-				y = Integer.parseInt(move[1]);
-			}
-			if(!playerPass && board.isLegalMove(x, y, PLAYER))
-			{
-				board.input(x, y, PLAYER);
-			}
+			do{
+				legalMove = true;
+				String pMoveInput = scan.nextLine();
+				playerPass = pMoveInput.equalsIgnoreCase("pass");
+				if(!playerPass){
+					String[] move = pMoveInput.split(" ");
+					x = Integer.parseInt(move[0]);
+					y = Integer.parseInt(move[1]);
+				}else{
+					break;
+				}
+
+				if(board.isLegalMove(x,y,PLAYER)){
+					legalMove = true;
+					board.input(x,y,PLAYER);
+				}else{
+					legalMove = false;
+					System.out.println("That move is not legal. Choose another move.");
+				}
+			}while(!legalMove);
 			board.print();
 
 			//Computer Move
@@ -105,8 +115,8 @@ public class Othello
 				System.out.println("Checking (i,j) = "+"("+i+","+j+")");
 				if(board.isLegalMove(i,j,COMPUTER))
 				{
-					coords[0] = x;
-					coords[1] = y;
+					coords[0] = i;
+					coords[1] = j;
 					return coords;
 				}
 			}
