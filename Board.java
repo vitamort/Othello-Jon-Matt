@@ -192,8 +192,8 @@ public class Board
 			}
 		if(upright)
 		{
-			b = x;
-			c = y;
+			b = x+1;
+			c = y+1;
 			for(int a = 1; b<7&&c<7; a++)
 			{
 				b=x+a;
@@ -207,8 +207,8 @@ public class Board
 		}
 		if(upleft)
 		{
-			b=x;
-			c=y;
+			b=x-1;
+			c=y+1;
 			for(int a = 1; b>=0&&c<7; a++)
 			{
 				b=x-a;
@@ -222,8 +222,8 @@ public class Board
 		}
 		if(downright)
 		{
-			b=x;
-			c=y;
+			b=x+1;
+			c=y-1;
 			for(int a = 1; b<7&&c>=0; a++)
 			{
 				b=x+a;
@@ -237,8 +237,8 @@ public class Board
 		}
 		if(downleft)
 		{
-			b=x;
-			c=y;
+			b=x-1;
+			c=y-1;
 			for(int a = 1; b>=0&&c>=0; a++)
 			{
 				b=x-a;
@@ -298,8 +298,8 @@ public class Board
 				return true;
 			}
 		}
-		int b = x;
-		int c = y;
+		int b = x+1;
+		int c = y+1;
 		for(int a = 1; b<7&&c<7; a++)
 		{
 			b=x+a;
@@ -311,8 +311,8 @@ public class Board
 				return true;
 			}
 		}
-		b=x;
-		c=y;
+		b=x-1;
+		c=y+1;
 		for(int a = 1; b>=0&&c<7; a++)
 		{
 			b=x-a;
@@ -324,8 +324,8 @@ public class Board
 				return true;
 			}
 		}
-		b=x;
-		c=y;
+		b=x+1;
+		c=y-1;
 		for(int a = 1; b<7&&c>=0; a++)
 		{
 			b=x+a;
@@ -337,8 +337,8 @@ public class Board
 				return true;
 			}
 		}
-		b=x;
-		c=y;
+		b=x-1;
+		c=y-1;
 		for(int a = 1; b>=0&&c>=0; a++)
 		{
 			b=x-a;
