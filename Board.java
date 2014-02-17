@@ -1,12 +1,17 @@
-package othello;
+/*
+Matt DeMartino
+Jonathan Schoeller
+CSC 242 - Artificial Intelligence
+Othello Project
+*/
 
 public class Board 
 {
 	char[][] chart;
-	final char BLANK = ' ';
+	final char BLANK = '+';
 	final char PLAYER;
 	final char COMPUTER;
-	final char BOARDSIZE;
+	final int BOARDSIZE;
 
 	public Board(char playerColor, char computerColor, int size)
 	{
@@ -247,20 +252,16 @@ public class Board
 		}
 	}
 
-	public void print()
-	{
-		for(int y = 0; y<8; y++)
-		{
-			for(int x = 0; x<8; x++)
-			{
-				System.out.print(chart[x][y]);
-			}
-			System.out.println();
-		}
+	public char not(char color)
+	{//Returns the "other" color.
+		if(color == PLAYER) return COMPUTER;
+		else return PLAYER;
 	}
 
 	public boolean isLegalMove(int x, int y, char color)
 	{
+		if(chart[x][y] != BLANK) return false;
+
 		for(int a = x-1; a>=0; a--)
 		{
 			if(chart[a][y]==BLANK)
@@ -365,6 +366,22 @@ public class Board
 			}
 		}
 		return count;
+	}
+
+	public void print()
+	{
+		System.out.println(" | 01234567");
+		//System.out.println("-----------");
+		for(int y = 0; y<8; y++)
+		{
+			System.out.print(y + "| ");
+			for(int x = 0; x<8; x++)
+			{
+				System.out.print(chart[x][y]);
+			}
+			System.out.println();
+		}
+		System.out.println("-----------");
 	}
 
 }
