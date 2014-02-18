@@ -97,10 +97,8 @@ public class Board
 		}
 		int b = x+1;
 		int c = y+1;
-		for(int a = 1; b<7&&c<7; a++)
+		for(int a = 2; b<7&&c<7; a++)
 		{
-			b=x+a;
-			c=y+a;
 			if(chart[b][c]==BLANK)
 				break;
 			if(chart[b][c]==color)
@@ -108,13 +106,13 @@ public class Board
 				upright=true;
 				break;
 			}
+			b=x+a;
+			c=y+a;
 		}
 		b=x-1;
 		c=y+1;
-		for(int a = 1; b>=0&&c<7; a++)
+		for(int a = 2; b>=0&&c<7; a++)
 		{
-			b=x-a;
-			c=y+a;
 			if(chart[b][c]==BLANK)
 				break;
 			if(chart[b][c]==color)
@@ -122,13 +120,13 @@ public class Board
 				upleft=true;
 				break;
 			}
+			b=x-a;
+			c=y+a;
 		}
 		b=x+1;
 		c=y-1;
-		for(int a = 1; b<7&&c>=0; a++)
+		for(int a = 2; b<7&&c>=0; a++)
 		{
-			b=x+a;
-			c=y-a;
 			if(chart[b][c]==BLANK)
 				break;
 			if(chart[b][c]==color)
@@ -136,13 +134,13 @@ public class Board
 				downright=true;
 				break;
 			}
+			b=x+a;
+			c=y-a;
 		}
 		b=x-1;
 		c=y-1;
 		for(int a = 1; b>=0&&c>=0; a++)
 		{
-			b=x-a;
-			c=y-a;
 			if(chart[b][c]==BLANK)
 				break;
 			if(chart[b][c]==color)
@@ -150,6 +148,8 @@ public class Board
 				downleft=true;
 				break;
 			}
+			b=x-a;
+			c=y-a;
 		}
 
 
@@ -196,13 +196,13 @@ public class Board
 			c = y+1;
 			for(int a = 1; b<7&&c<7; a++)
 			{
-				b=x+a;
-				c=y+a;
 				if(chart[b][c]==color)
 				{
 					break;
 				}
                 chart[b][c]=color;
+				b=x+a;
+				c=y+a;
 			}
 		}
 		if(upleft)
@@ -211,13 +211,13 @@ public class Board
 			c=y+1;
 			for(int a = 1; b>=0&&c<7; a++)
 			{
-				b=x-a;
-				c=y+a;
 				if(chart[b][c]==color)
 				{
 					break;
 				}
                 chart[b][c]=color;
+				b=x-a;
+				c=y+a;
 			}
 		}
 		if(downright)
@@ -226,13 +226,13 @@ public class Board
 			c=y-1;
 			for(int a = 1; b<7&&c>=0; a++)
 			{
-				b=x+a;
-				c=y-a;
 				if(chart[b][c]==color)
 				{
 					break;
 				}
                 chart[b][c]=color;
+				b=x+a;
+				c=y-a;
 			}
 		}
 		if(downleft)
@@ -241,13 +241,13 @@ public class Board
 			c=y-1;
 			for(int a = 1; b>=0&&c>=0; a++)
 			{
-				b=x-a;
-				c=y-a;
 				if(chart[b][c]==color)
 				{
 					break;
 				}
                 chart[b][c]=color;
+				b=x-a;
+				c=y-a;
 			}
 		}
 	}
@@ -300,33 +300,31 @@ public class Board
 		}
 		int b = x+1;
 		int c = y+1;
-		for(int a = 1; b<7&&c<7; a++)
+		for(int a = 2; b<7&&c<7; a++)
 		{
-			b=x+a;
-			c=y+a;
 			if(chart[b][c]==BLANK)
 				break;
 			if(chart[b][c]==color)
 			{
 				return true;
 			}
+			b=x+a;
+			c=y+a;
 		}
 		b=x-1;
 		c=y+1;
-		for(int a = 1; b>=0&&c<7; a++)
+		for(int a = 2; b>=0&&c<7; a++)
 		{
-			b=x-a;
-			c=y+a;
 			if(chart[b][c]==BLANK)
 				break;
 			if(chart[b][c]==color)
 			{
 				return true;
 			}
+			b=x-a;
+			c=y+a;
 		}
-		b=x+1;
-		c=y-1;
-		for(int a = 1; b<7&&c>=0; a++)
+		for(int a = 2; b<7&&c>=0; a++)
 		{
 			b=x+a;
 			c=y-a;
@@ -336,19 +334,21 @@ public class Board
 			{
 				return true;
 			}
+            b=x+1;
+            c=y-1;
 		}
 		b=x-1;
 		c=y-1;
-		for(int a = 1; b>=0&&c>=0; a++)
+		for(int a = 2; b>=0&&c>=0; a++)
 		{
-			b=x-a;
-			c=y-a;
 			if(chart[b][c]==BLANK)
 				break;
 			if(chart[b][c]==color)
 			{
 				return true;
 			}
+			b=x-a;
+			c=y-a;
 		}
 		return false;
 	}

@@ -57,7 +57,7 @@ public class Othello
 		boolean legalMove = true;
 
 		//Loop through game here
-		while(!gameover(playerPass, computerPass))
+		while(!gameover())
 		{
 			playerPass = false;
 			computerPass = false;
@@ -128,27 +128,27 @@ public class Othello
 
 	public static boolean gameover()
 	{ //Returns true if the game is over
-        if(getCount(PLAYER)==0)
+        if(board.getCount(PLAYER)==0)
             return true;
-        if(getCount(COMPUTER)==0)
+        if(board.getCount(COMPUTER)==0)
             return true;
         for(int x = 0; x<8; x++)
         {
             for(int y = 0; y<8; y++)
             {
-                if(isLegalMove(x, y, PLAYER)||isLegalMove(x, y, PLAYER))
-                    return true;
+                if(board.isLegalMove(x, y, PLAYER)||board.isLegalMove(x, y, PLAYER))
+                    return false;
             }
         }
 
-		return false;
+		return true;
 	}
 
 	public static void announceGameWinner()
 	{ //Figures out and prints who won the game (We probably won't need this after we get through the first parts)
-        if(getCount(PLAYER)>getCOunt(COMPUTER))
+        if(board.getCount(PLAYER)>board.getCount(COMPUTER))
             System.out.println("Player wins");
-        else if(getCount(PLAYER)>getCOunt(COMPUTER))
+        else if(board.getCount(PLAYER)>board.getCount(COMPUTER))
             System.out.println("Computer wins");
         else
             System.out.println("It is a tie");
