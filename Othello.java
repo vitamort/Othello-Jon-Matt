@@ -126,15 +126,32 @@ public class Othello
 		return coords;
 	}
 
-	public static boolean gameover(boolean pPass, boolean cPass)
+	public static boolean gameover()
 	{ //Returns true if the game is over
-	  //NOTE: We might need more arguments (whose turn is it? Has the other player passed?)
+        if(getCount(PLAYER)==0)
+            return true;
+        if(getCount(COMPUTER)==0)
+            return true;
+        for(int x = 0; x<8; x++)
+        {
+            for(int y = 0; y<8; y++)
+            {
+                if(isLegalMove(x, y, PLAYER)||isLegalMove(x, y, PLAYER))
+                    return true;
+            }
+        }
 
 		return false;
 	}
 
 	public static void announceGameWinner()
 	{ //Figures out and prints who won the game (We probably won't need this after we get through the first parts)
+        if(getCount(PLAYER)>getCOunt(COMPUTER))
+            System.out.println("Player wins");
+        else if(getCount(PLAYER)>getCOunt(COMPUTER))
+            System.out.println("Computer wins");
+        else
+            System.out.println("It is a tie");
 
 	}
 }
