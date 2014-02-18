@@ -95,8 +95,8 @@ public class Board
 				break;
 			}
 		}
-		int b = x;
-		int c = y;
+		int b = x+1;
+		int c = y+1;
 		for(int a = 1; b<7&&c<7; a++)
 		{
 			b=x+a;
@@ -109,8 +109,8 @@ public class Board
 				break;
 			}
 		}
-		b=x;
-		c=y;
+		b=x-1;
+		c=y+1;
 		for(int a = 1; b>=0&&c<7; a++)
 		{
 			b=x-a;
@@ -123,8 +123,8 @@ public class Board
 				break;
 			}
 		}
-		b=x;
-		c=y;
+		b=x+1;
+		c=y-1;
 		for(int a = 1; b<7&&c>=0; a++)
 		{
 			b=x+a;
@@ -137,8 +137,8 @@ public class Board
 				break;
 			}
 		}
-		b=x;
-		c=y;
+		b=x-1;
+		c=y-1;
 		for(int a = 1; b>=0&&c>=0; a++)
 		{
 			b=x-a;
@@ -155,7 +155,7 @@ public class Board
 
 		//Flip each direction that we've found can be flipped.
 		if(left)
-			for(int a = x; a>=0; a--)
+			for(int a = x-1; a>=0; a--)
 			{
 				if(chart[a][y]==color)
 				{
@@ -164,7 +164,7 @@ public class Board
                 chart[a][y] = color;
 			}
 		if(right)
-			for(int a = x; a<8; a++)
+			for(int a = x+1; a<8; a++)
 			{
 				if(chart[a][y]==color)
 				{
@@ -173,7 +173,7 @@ public class Board
                 chart[a][y] = color;
 			}
 		if(down)
-			for(int a = y; a>=0; a--)
+			for(int a = y-1; a>=0; a--)
 			{
 				if(chart[x][a]==color)
 				{
@@ -182,7 +182,7 @@ public class Board
                 chart[x][a]=color;
 			}
 		if(up)
-			for(int a = y; a<8; a++)
+			for(int a = y+1; a<8; a++)
 			{
 				if(chart[x][a]==color)
 				{
