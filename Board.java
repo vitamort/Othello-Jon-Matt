@@ -261,34 +261,41 @@ public class Board
 	public boolean isLegalMove(int x, int y, char color)
 	{
 		if(chart[x][y] != BLANK) return false;
-        
-		for(int a = x-1; a>=0; a--)
-		{
-			if(chart[a][y]==BLANK)
-				break;
-			if(chart[a][y]==color)
-			{
-				return true;
-			}
-		}
-		for(int a = x+1; a<8; a++)
-		{
-			if(chart[a][y]==BLANK)
-				break;
-			if(chart[a][y]==color)
-			{
-				return true;
-			}
-		}
-		for(int a = y-1; a>=0; a--)
-		{
-			if(chart[x][a]==BLANK)
-				break;
-			if(chart[x][a]==color)
-			{
-				return true;
-			}
-		}
+        if(x!=0)
+            if(chart[x-1][y]!=BLANK&&chart[x-1][y]!=color)
+                for(int a = x-1; a>=0; a--)
+                {
+                    if(chart[a][y]==BLANK)
+                        break;
+                    if(chart[a][y]==color)
+                    {
+                        return true;
+                    }
+                }
+        if(x!=7)
+            if(chart[x+1][y]!=BLANK&&chart[x+1][y]!=color)
+                for(int a = x+1; a<8; a++)
+                {
+                    if(chart[a][y]==BLANK)
+                        break;
+                    if(chart[a][y]==color)
+                    {
+                        return true;
+                    }
+                }
+        if(y!=0)
+            if(chart[x][y-1]!=BLANK&&chart[x][y-1]!=color)
+                for(int a = y-1; a>=0; a--)
+                {
+                    if(chart[x][a]==BLANK)
+                        break;
+                    if(chart[x][a]==color)
+                    {
+                        return true;
+                    }
+                }
+        if(y!=7)
+        if(chart[x][y+1]!=BLANK&&chart[x][y+1]!=color)
 		for(int a = y+1; a<8; a++)
 		{
 			if(chart[x][a]==BLANK)
@@ -300,6 +307,8 @@ public class Board
 		}
 		int b = x+1;
 		int c = y+1;
+        if(x!=7&&y!=7)
+        if(chart[b][c]!=BLANK&&chart[b][c]!=color)
 		for(int a = 2; b<7&&c<7; a++)
 		{
 			if(chart[b][c]==BLANK)
@@ -313,6 +322,8 @@ public class Board
 		}
 		b=x-1;
 		c=y+1;
+        if(x!=0&&y!=7)
+        if(chart[b][c]!=BLANK&&chart[b][c]!=color)
 		for(int a = 2; b>=0&&c<7; a++)
 		{
 			if(chart[b][c]==BLANK)
@@ -326,6 +337,8 @@ public class Board
 		}
         b=x+1;
         c=y-1;
+        if(x!=7&&y!=0)
+        if(chart[b][c]!=BLANK&&chart[b][c]!=color)
 		for(int a = 2; b<7&&c>=0; a++)
 		{
 			
@@ -335,11 +348,13 @@ public class Board
 			{
 				return true;
 			}
-            b=x+1;
-            c=y-1;
+            b=x+a;
+            c=y-a;
 		}
 		b=x-1;
 		c=y-1;
+        if(x!=0&&y!=0)
+        if(chart[b][c]!=BLANK&&chart[b][c]!=color)
 		for(int a = 2; b>=0&&c>=0; a++)
 		{
 			if(chart[b][c]==BLANK)

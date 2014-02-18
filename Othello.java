@@ -1,5 +1,3 @@
-package test;
-
 /*
  Matt DeMartino
  Jonathan Schoeller
@@ -43,14 +41,14 @@ public class Othello
         
 		//Initialize the gameboard
 		board = new Board(PLAYER, COMPUTER, BOARDSIZE);
-		board.print();
+		//board.print();
         
 		//Let the computer go first if it's supposed to
 		if(computerGoesFirst)
 		{
 			int[] coords = computerMove();
 			board.input(coords[0], coords[1], COMPUTER);
-			board.print();
+			//board.print();
 		}
         
 		int x=0, y=0;
@@ -80,10 +78,10 @@ public class Othello
 					board.input(x,y,PLAYER);
 				}else{
 					legalMove = false;
-					System.out.println("That move is not legal. Choose another move.");
+					//System.out.println("That move is not legal. Choose another move.");
 				}
 			}while(!legalMove);
-			board.print();
+			//board.print();
             
 			//Computer Move
 			int[] coords = computerMove();
@@ -91,13 +89,14 @@ public class Othello
 			if(!computerPass)
 			{
 				board.input(coords[0], coords[1], COMPUTER);
+                System.out.println(coords[0] + " " + coords[1]);
 			}else{
 				System.out.println("pass");
 			}
-			board.print();
+			//board.print();
 		}
         
-		announceGameWinner();
+		//announceGameWinner();
 	}
     
 	public static int[] computerMove()
@@ -113,7 +112,7 @@ public class Othello
 		{
 			for(int j=0; j<BOARDSIZE; j++)
 			{
-				System.out.println("Checking (i,j) = "+"("+i+","+j+")");
+				//System.out.println("Checking (i,j) = "+"("+i+","+j+")");
 				if(board.isLegalMove(i,j,COMPUTER))
 				{
 					coords[0] = i;
