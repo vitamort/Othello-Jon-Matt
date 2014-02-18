@@ -1,26 +1,26 @@
 /*
-Matt DeMartino
-Jonathan Schoeller
-CSC 242 - Artificial Intelligence
-Othello Project
-*/
+ Matt DeMartino
+ Jonathan Schoeller
+ CSC 242 - Artificial Intelligence
+ Othello Project
+ */
 
-public class Board 
+public class Board
 {
 	char[][] chart;
 	final char BLANK = '+';
 	final char PLAYER;
 	final char COMPUTER;
 	final int BOARDSIZE;
-
+    
 	public Board(char playerColor, char computerColor, int size)
 	{
 		this.PLAYER = playerColor;
 		this.COMPUTER = computerColor;
 		this.BOARDSIZE = size;
-
+        
 		chart = new char[size][size];
-
+        
 		for(int a = 0; a<size; a++)
 		{
 			for(int b = 0; b<size; b++)
@@ -28,21 +28,21 @@ public class Board
 				chart[a][b]=BLANK;
 			}
 		}
-
+        
 		//Initial positions
 		chart[3][3]=PLAYER;
 		chart[4][4]=PLAYER;
 		chart[3][4]=COMPUTER;
 		chart[4][3]=COMPUTER;
 	}
-
+    
 	//Makes a move at the (x,y) position given for a given player.
 	public void input(int x, int y, char color)
 	{
 		chart[x][y]=color;
 		flip(x, y, color);
 	}
-	private void flip(int x, int y, char color) 
+	private void flip(int x, int y, char color)
 	{
 		//First check what directions can be flipped
 		boolean left = false;
@@ -53,7 +53,7 @@ public class Board
 		boolean upleft = false;
 		boolean downright = false;
 		boolean downleft = false;
-		//variables saying weather or not a given direction should 
+		//variables saying weather or not a given direction should
 		//have pieces flipped
 		for(int a = x-1; a>=0; a--)
 		{
@@ -151,8 +151,8 @@ public class Board
 			b=x-a;
 			c=y-a;
 		}
-
-
+        
+        
 		//Flip each direction that we've found can be flipped.
 		if(left)
 			for(int a = x-1; a>=0; a--)
@@ -251,17 +251,17 @@ public class Board
 			}
 		}
 	}
-
+    
 	public char not(char color)
 	{//Returns the "other" color.
 		if(color == PLAYER) return COMPUTER;
 		else return PLAYER;
 	}
-
+    
 	public boolean isLegalMove(int x, int y, char color)
 	{
 		if(chart[x][y] != BLANK) return false;
-
+        
 		for(int a = x-1; a>=0; a--)
 		{
 			if(chart[a][y]==BLANK)
@@ -353,7 +353,7 @@ public class Board
 		}
 		return false;
 	}
-
+    
 	//Returns the number of pieces on the board of a given color.
 	public int getCount(char color)
 	{
@@ -368,7 +368,7 @@ public class Board
 		}
 		return count;
 	}
-
+    
 	public void print()
 	{
 		System.out.println(" | 01234567");
@@ -384,5 +384,6 @@ public class Board
 		}
 		System.out.println("-----------");
 	}
-
+    
 }
+
