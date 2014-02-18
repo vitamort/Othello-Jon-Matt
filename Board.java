@@ -324,10 +324,11 @@ public class Board
 			b=x-a;
 			c=y+a;
 		}
+        b=x+1;
+        c=y-1;
 		for(int a = 2; b<7&&c>=0; a++)
 		{
-			b=x+a;
-			c=y-a;
+			
 			if(chart[b][c]==BLANK)
 				break;
 			if(chart[b][c]==color)
