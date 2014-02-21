@@ -30,10 +30,10 @@ public class Board
 		}
         
 		//Initial positions
-		chart[3][3]=PLAYER;
-		chart[4][4]=PLAYER;
-		chart[3][4]=COMPUTER;
-		chart[4][3]=COMPUTER;
+		chart[3][3]='W';
+		chart[4][4]='W';
+		chart[3][4]='B';
+		chart[4][3]='B';
 	}
     
 	//Makes a move at the (x,y) position given for a given player.
@@ -251,6 +251,36 @@ public class Board
 			}
 		}
 	}
+	
+	public static int utilityOf(Board x, char player)
+	{
+		/*
+		 * Assuming that white is the player, and black is the opponent, here are the good and bad things:
+		 * 
+		 * GOOD
+		 * 	# of white
+		 * 	W corner
+		 * 	W side
+		 * 	W piece can capture Black
+		 * 	W Wins
+		 * 	# W moves - # B moves
+		 * 
+		 * BAD
+		 * 	# of black
+		 * 	B corner
+		 * 	B side
+		 * 	B can capture W
+		 * 	B Wins
+		 * 
+		 * Neutral
+		 * 	# of pieces on the board
+		 */
+		
+		if(gameover(x))
+        {}
+        return 0;
+		
+	}
     
 	public char not(char color)
 	{//Returns the "other" color.
@@ -383,7 +413,82 @@ public class Board
 		}
 		return count;
 	}
-    
+	
+	public static boolean gameover(Board b)
+	{ //Returns true if the game is over
+        if(b.getCount(b.PLAYER)==0)
+            return true;
+        if(b.getCount(b.COMPUTER)==0)
+            return true;
+        for(int x = 0; x<8; x++)
+        {
+            for(int y = 0; y<8; y++)
+            {
+                if(b.isLegalMove(x, y, b.PLAYER)||b.isLegalMove(x, y, b.COMPUTER))
+                    return false;
+            }
+        }
+        
+		return true;
+	}
+	
+	public String AlphaBeta(Board state, int depth, int depthLimit, int alpha, int beta, char player)
+    {
+        if(depth==depthLimit)
+            return ""+(state.getCount(COMPUTER)-state.getCount(PLAYER));
+        String best = "";
+        if(player==COMPUTER)
+        {
+            int xcoord=0;
+            int ycoord=0;
+            for(int x = 0; x<8; x++)
+            {
+                for(int y = 0; y<8; y++)
+                {
+                    if(state.isLegalMove(x, y, COMPUTER))
+                    {
+                        Board board = new Board(PLAYER, COMPUTER, 8);
+                        board =state;
+                        board.input(x, y, COMPUTER);
+                        int temp =Integer.parseInt((AlphaBeta(board, depth+1,  depthLimit, alpha, beta, PLAYER).split(" "))[0]);//may not compile, if it doesn't, move array out
+                        if(temp>alpha)
+                        {
+                            alpha=temp;
+                            xcoord=x;
+                            ycoord=y;
+                        }
+                        
+                    }
+                }
+            }
+            return "" + alpha + " " + xcoord + " " + ycoord;
+        }
+        else
+        {
+            int xcoord=0;
+            int ycoord=0;
+            for(int x = 0; x<8; x++)
+            {
+                for(int y = 0; y<8; y++)
+                {
+                    if(state.isLegalMove(x, y, PLAYER))
+                    {
+                        Board board = new Board(PLAYER, COMPUTER, 8);
+                        board =state;
+                        board.input(x, y, PLAYER);
+                        int temp =Integer.parseInt((AlphaBeta(board, depth+1,  depthLimit, alpha, beta, COMPUTER).split(" "))[0]);//may not compile, if it doesn't, move array out
+                        if(temp<beta)
+                        {
+                            beta=temp;
+                            xcoord=x;
+                            ycoord=y;
+                        }
+                    }
+                }
+            }
+            return "" + beta + " " + xcoord + " " + ycoord;
+        }
+    }
 	public void print()
 	{
 		System.out.println(" | 01234567");
