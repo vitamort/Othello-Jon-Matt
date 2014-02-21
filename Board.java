@@ -436,11 +436,10 @@ public class Board
     {
         if(depth==depthLimit)
             return ""+(state.getCount(COMPUTER)-state.getCount(PLAYER));
-        String best = "";
+        int xcoord=0;
+        int ycoord=0;
         if(player==COMPUTER)
         {
-            int xcoord=0;
-            int ycoord=0;
             for(int x = 0; x<8; x++)
             {
                 for(int y = 0; y<8; y++)
@@ -465,8 +464,6 @@ public class Board
         }
         else
         {
-            int xcoord=0;
-            int ycoord=0;
             for(int x = 0; x<8; x++)
             {
                 for(int y = 0; y<8; y++)
