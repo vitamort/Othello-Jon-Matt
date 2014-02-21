@@ -154,4 +154,80 @@ public class Othello
             System.out.println("It is a tie");
         
 	}
+    public String AlphaBeta(Board state, int depth, int depthLimit, int alpha, int beta, char player)
+    {
+        if(depth==depthLimit)
+            return ""+(state.getCount(COMPUTER)-state.getCount(PLAYER));
+        String best = "";
+        if(player==COMPUTER)
+        {
+            int MAX;
+            int xcoord;
+            int ycoord;
+            for(int x = 0; x<8; x++)
+            {
+                for(int y = 0; y<8; y++)
+                {
+                    if(state.isLegalMove(x, y, COMPUTER))
+                    {
+                        Board board = new Board(PLAYER, COMPUTER, 8);
+                        board =state;
+                        board.input(x, y, COMPUTER)
+                        if(MAX==null)
+                        {
+                            xcoord=x;
+                            ycoord=y;
+                            MAX = Integer.parseInt(AlphaBeta(board, depth+1,  depthLimit, alpha, beta, PLAYER));
+                        }
+                        else
+                        {
+                            int temp =Integer.parseInt(AlphaBeta(board, depth+1,  depthLimit, alpha, beta, PLAYER));
+                            if(temp>MAX)
+                            {
+                                MAX=temp;
+                                xcoord=x;
+                                ycoord=y;
+                            }
+                        }
+                    }
+                }
+            }
+            return "" + MAX + " " + xcoord + " " + ycoord;
+        }
+        else
+        {
+            int MIN;
+            int xcoord;
+            int ycoord;
+            for(int x = 0; x<8; x++)
+            {
+                for(int y = 0; y<8; y++)
+                {
+                    if(state.isLegalMove(x, y, PLAYER))
+                    {
+                        Board board = new Board(PLAYER, COMPUTER, 8);
+                        board =state;
+                        board.input(x, y, PLAYER)
+                        if(MIN==null)
+                        {
+                            xcoord=x;
+                            ycoord=y;
+                            MIN = Integer.parseInt(AlphaBeta(board, depth+1,  depthLimit, alpha, beta, COMPUTER));
+                        }
+                        else
+                        {
+                            int temp =Integer.parseInt(AlphaBeta(board, depth+1,  depthLimit, alpha, beta, COMPUTER));
+                            if(temp<MIN)
+                            {
+                                MIN=temp;
+                                xcoord=x;
+                                ycoord=y;
+                            }
+                        }
+                    }
+                }
+            }
+            return "" + MIN + " " + xcoord + " " + ycoord;
+        }
+    }
 }
