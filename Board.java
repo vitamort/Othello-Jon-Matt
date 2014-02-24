@@ -252,25 +252,36 @@ public class Board
 		}
 	}
 	
-	public static int utilityOf(Board x, char player)
+	public static int utilityOf(Board x)
 	{
+        int value = 0;
+        int computer = x.getCount(x, COMPUTER);
+        int player = x.getcount(x, PLAYER);
+        computer+=5 * x.onWallsAndCorners(x, COMPUTER);
+        player+=5 * x.onWallsAndCorners(x, PLAYER);
+        computer+=3 * moveCount(board, COMPUTER);
+        player+=3 * moveCount(board, PLAYER);
+        value = computer-player;
 		/*
 		 * Assuming that white is the player, and black is the opponent, here are the good and bad things:
 		 * 
 		 * GOOD
-		 * 	# of white
-		 * 	W corner
-		 * 	W side
-		 * 	W piece can capture Black
-		 * 	W Wins
-		 * 	# W moves - # B moves
+		 * 	# of white-check
+		 * 	W corner-check
+		 * 	W side-check
+		 * 	W piece can capture Black-i feel this is the same as
+         *                           subtracting the # of black moves
+         *                           from the white moves
+		 * 	W Wins-feel this is a given, but does not need to be stressed
+		 * 	# W moves-check
 		 * 
 		 * BAD
-		 * 	# of black
-		 * 	B corner
-		 * 	B side
+		 * 	# of black-check
+		 * 	B corner-check
+		 * 	B side-check
 		 * 	B can capture W
-		 * 	B Wins
+		 * 	B Wins-feel this is a given, but does not need to be stressed
+         *  # B moves-check
 		 * 
 		 * Neutral
 		 * 	# of pieces on the board
@@ -278,9 +289,52 @@ public class Board
 		
 		if(gameover(x))
         {}
-        return 0;
+        return value;
 		
 	}
+    private static int onWallsAndCorners(Board board, char color)
+    {
+        int count = 0;
+        for(int x = 0; x<8; x++)
+        {
+            if(board.chart[x][0]==color)
+                count++;
+            if(board.chart[x][7]==color)
+                count++;
+        }
+        for(int y = 0; y<8; x++)
+        {
+            if(board.chart[0][y]==color)
+                count++;
+            if(board.chart[7][y]==color)
+                count++;
+        }
+        if(board.chart[0][0]==color)
+            count++;
+        if(board.chart[0][7]==color)
+            count++;
+        if(board.chart[7][0]==color)
+            count++;
+        if(board.chart[7][7]==color)
+            count++;
+        return count;
+    }
+    private static int moveCount(Board board, char color)
+    {
+        count = 0;
+        for(int i = 0; i<7; i++)
+		{
+			for(int j=0; j<7; j++)
+			{
+				//System.out.println("Checking (i,j) = "+"("+i+","+j+")");
+				if(board.isLegalMove(i,j,COMPUTER))
+				{
+					count++;
+				}
+			}
+		}
+        return count;
+    }
     
 	public char not(char color)
 	{//Returns the "other" color.
@@ -435,7 +489,7 @@ public class Board
 	public String AlphaBeta(Board state, int depth, int depthLimit, int alpha, int beta, char player)
     {
         if(depth==depthLimit)
-            return ""+(state.getCount(COMPUTER)-state.getCount(PLAYER));
+            return ""+Board.utilityOf(state);
         int xcoord=0;
         int ycoord=0;
         if(player==COMPUTER)

@@ -101,29 +101,19 @@ public class Othello
     
 	public static int[] computerMove()
 	{
-		int x=3;
-		int y=5;
 		int[] coords = new int[2];
         
 		//Set x and y to the coordinates of the computer's next move here
         //NOTE: How do we consider if the computer wants to pass?
-        
-		for(int i = 0; i<BOARDSIZE; i++)
-		{
-			for(int j=0; j<BOARDSIZE; j++)
-			{
-				//System.out.println("Checking (i,j) = "+"("+i+","+j+")");
-				if(board.isLegalMove(i,j,COMPUTER))
-				{
-					coords[0] = i;
-					coords[1] = j;
-					return coords;
-				}
-			}
-		}
-        
-		coords[0] = -1; coords[1]=0;
-		return coords;
+        if(Board.moveCount(board, COMPUTER)==0)
+        {
+            coords[0] = -1; coords[1]=0;
+            return coords;
+        }
+        String move = board.AlphaBeta(board, 0, depthLimit, Integer.MIN_VALUE, Integer.MAX_VALUE, COMPUTER);
+        coords[0]=Integer.parseInt(move.split(" "))[1];
+        coords[1]=Integer.parseInt(move.split(" "))[2];
+        return coords;
 	}
     
 	
