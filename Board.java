@@ -35,6 +35,20 @@ public class Board
 		chart[3][4]='B';
 		chart[4][3]='B';
 	}
+    public Board(Board b)
+    {
+        this.PLAYER=b.PLAYER;
+        this.COMPUTER=b.COMPUTER;
+        this.BOARDSIZE=b.BOARDSIZE;
+        chart=new char[BOARDSIZE][BOARDSIZE];
+        for(int x = 0; x<BOARDSIZE; x++)
+		{
+			for(int y = 0; y<BOARDSIZE; y++)
+			{
+				chart[x][y]=b.chart[x][y];
+			}
+		}
+    }
     
 	//Makes a move at the (x,y) position given for a given player.
 	public void input(int x, int y, char color)
@@ -487,8 +501,7 @@ public class Board
                 {
                     if(state.isLegalMove(x, y, COMPUTER))
                     {
-                        Board board = new Board(PLAYER, COMPUTER, 8);
-                        board =state;
+                        Board board = new Board(state);
                         board.input(x, y, COMPUTER);
                         int temp =Integer.parseInt((AlphaBeta(board, depth+1,  depthLimit, alpha, beta, PLAYER).split(" "))[0]);//may not compile, if it doesn't, move array out
                         if(temp>alpha)
@@ -497,7 +510,6 @@ public class Board
                             xcoord=x;
                             ycoord=y;
                         }
-                        
                     }
                 }
             }
@@ -511,8 +523,7 @@ public class Board
                 {
                     if(state.isLegalMove(x, y, PLAYER))
                     {
-                        Board board = new Board(PLAYER, COMPUTER, 8);
-                        board =state;
+                        Board board = new Board(state);
                         board.input(x, y, PLAYER);
                         int temp =Integer.parseInt((AlphaBeta(board, depth+1,  depthLimit, alpha, beta, COMPUTER).split(" "))[0]);//may not compile, if it doesn't, move array out
                         if(temp<beta)
