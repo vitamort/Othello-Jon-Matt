@@ -6,7 +6,6 @@
  */
 
 import java.util.Scanner;
-
 public class Othello
 {
 	//Constants
@@ -15,6 +14,9 @@ public class Othello
 	static char PLAYER;
 	static char COMPUTER;
 	static Board board;
+    static int depthLimit=-1;
+    static int timeLimit1;
+    static int timeLimit2;
     
 	public static void main(String[] args)
 	{
@@ -25,9 +27,9 @@ public class Othello
 		//Parse the input string
 		String[] input = inputStr.split(" ");
 		boolean computerGoesFirst = (input[1].toLowerCase().charAt(0) == 'b');
-		int depthLimit = Integer.parseInt(input[2]);
-		int timeLimit1 = Integer.parseInt(input[3]);
-		int timeLimit2 = Integer.parseInt(input[4]);
+		depthLimit = Integer.parseInt(input[2]);
+		timeLimit1 = Integer.parseInt(input[3]);
+		timeLimit2 = Integer.parseInt(input[4]);
         
 		//Set the pieces for the computer and player
 		if(computerGoesFirst)
@@ -111,8 +113,9 @@ public class Othello
             return coords;
         }
         String move = board.AlphaBeta(board, 0, depthLimit, Integer.MIN_VALUE, Integer.MAX_VALUE, COMPUTER);
-        coords[0]=Integer.parseInt(move.split(" "))[1];
-        coords[1]=Integer.parseInt(move.split(" "))[2];
+        String[] strings = move.split(" ");
+        coords[0]=Integer.parseInt(strings[1]);
+        coords[1]=Integer.parseInt(strings[2]);
         return coords;
 	}
     

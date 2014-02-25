@@ -255,12 +255,12 @@ public class Board
 	public static int utilityOf(Board x)
 	{
         int value = 0;
-        int computer = x.getCount(x, COMPUTER);
-        int player = x.getcount(x, PLAYER);
-        computer+=5 * x.onWallsAndCorners(x, COMPUTER);
-        player+=5 * x.onWallsAndCorners(x, PLAYER);
-        computer+=3 * moveCount(board, COMPUTER);
-        player+=3 * moveCount(board, PLAYER);
+        int computer = x.getCount(x.COMPUTER);
+        int player = x.getCount(x.PLAYER);
+        computer+=5 * Board.onWallsAndCorners(x, x.COMPUTER);
+        player+=5 * Board.onWallsAndCorners(x, x.PLAYER);
+        computer+=3 * moveCount(x, x.COMPUTER);
+        player+=3 * moveCount(x, x.PLAYER);
         value = computer-player;
 		/*
 		 * Assuming that white is the player, and black is the opponent, here are the good and bad things:
@@ -302,7 +302,7 @@ public class Board
             if(board.chart[x][7]==color)
                 count++;
         }
-        for(int y = 0; y<8; x++)
+        for(int y = 0; y<8; y++)
         {
             if(board.chart[0][y]==color)
                 count++;
@@ -319,15 +319,15 @@ public class Board
             count++;
         return count;
     }
-    private static int moveCount(Board board, char color)
+    public static int moveCount(Board board, char color)
     {
-        count = 0;
+        int count = 0;
         for(int i = 0; i<7; i++)
 		{
 			for(int j=0; j<7; j++)
 			{
 				//System.out.println("Checking (i,j) = "+"("+i+","+j+")");
-				if(board.isLegalMove(i,j,COMPUTER))
+				if(board.isLegalMove(i,j,board.COMPUTER))
 				{
 					count++;
 				}
