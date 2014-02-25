@@ -43,14 +43,14 @@ public class Othello
         
 		//Initialize the gameboard
 		board = new Board(PLAYER, COMPUTER, BOARDSIZE);
-		//board.print();
+		board.print();
         
 		//Let the computer go first if it's supposed to
 		if(computerGoesFirst)
 		{
 			int[] coords = computerMove();
 			board.input(coords[0], coords[1], COMPUTER);
-			//board.print();
+			board.print();
 		}
         
 		int x=0, y=0;
@@ -83,7 +83,7 @@ public class Othello
 					//System.out.println("That move is not legal. Choose another move.");
 				}
 			}while(!legalMove);
-			//board.print();
+			board.print();
             
 			//Computer Move
 			int[] coords = computerMove();
@@ -95,7 +95,7 @@ public class Othello
 			}else{
 				System.out.println("pass");
 			}
-			//board.print();
+			board.print();
 		}
         
 		//announceGameWinner();

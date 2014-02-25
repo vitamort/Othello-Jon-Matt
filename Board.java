@@ -266,29 +266,16 @@ public class Board
 		 * Assuming that white is the player, and black is the opponent, here are the good and bad things:
 		 * 
 		 * GOOD
-		 * 	# of white-check
-		 * 	W corner-check
-		 * 	W side-check
 		 * 	W piece can capture Black-i feel this is the same as
          *                           subtracting the # of black moves
          *                           from the white moves
 		 * 	W Wins-feel this is a given, but does not need to be stressed
-		 * 	# W moves-check
 		 * 
 		 * BAD
-		 * 	# of black-check
-		 * 	B corner-check
-		 * 	B side-check
 		 * 	B can capture W
 		 * 	B Wins-feel this is a given, but does not need to be stressed
-         *  # B moves-check
-		 * 
-		 * Neutral
-		 * 	# of pieces on the board
+		 *
 		 */
-		
-		if(gameover(x))
-        {}
         return value;
 		
 	}
