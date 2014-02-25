@@ -50,6 +50,7 @@ public class Othello
 		{
 			int[] coords = computerMove();
 			board.input(coords[0], coords[1], COMPUTER);
+            System.out.println(coords[0] + " " + coords[1]);
 			//board.print();
 		}
         
