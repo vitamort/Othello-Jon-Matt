@@ -269,12 +269,22 @@ public class Board
 	public static int utilityOf(Board x)
 	{
         int value = 0;
-        int computer = x.getCount(x.COMPUTER);
-        int player = x.getCount(x.PLAYER);
+        int computer =0;
+        int player =0;
         computer+=5 * Board.onWallsAndCorners(x, x.COMPUTER);
         player+=5 * Board.onWallsAndCorners(x, x.PLAYER);
         computer+=3 * moveCount(x, x.COMPUTER);
         player+=3 * moveCount(x, x.PLAYER);
+        int numCompPieces = x.getCount(x.COMPUTER);
+        int numPlayerPieces= x.getCount(x.PLAYER);
+        int numTotalPieces = numCompPieces + numPlayerPieces;
+
+        //It becomes more important to have more pieces as we get later into the game.
+        int turnWeight = ((int) (Math.log(numTotalPieces)/Math.log(2)) ) - 1;
+
+        player += turnWeight*numPlayerPieces;
+        computer += turnWeight*numCompPieces;
+
         value = computer-player;
 		/*
 		 * Assuming that white is the player, and black is the opponent, here are the good and bad things:

@@ -1,4 +1,0 @@
-Othello-Jon-Matt
-================
-
-Othello
