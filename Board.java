@@ -111,7 +111,7 @@ public class Board
 		}
 		int b = x+1;
 		int c = y+1;
-		for(int a = 2; b<7&&c<7; a++)
+		while(b<7&&c<7)
 		{
 			if(chart[b][c]==BLANK)
 				break;
@@ -120,12 +120,12 @@ public class Board
 				upright=true;
 				break;
 			}
-			b=x+a;
-			c=y+a;
+			b++;
+			c++;
 		}
 		b=x-1;
 		c=y+1;
-		for(int a = 2; b>=0&&c<7; a++)
+		while(b>=0&&c<7)
 		{
 			if(chart[b][c]==BLANK)
 				break;
@@ -134,12 +134,12 @@ public class Board
 				upleft=true;
 				break;
 			}
-			b=x-a;
-			c=y+a;
+			b--;
+			c++;
 		}
 		b=x+1;
 		c=y-1;
-		for(int a = 2; b<7&&c>=0; a++)
+		while(b<7&&c>=0)
 		{
 			if(chart[b][c]==BLANK)
 				break;
@@ -148,12 +148,12 @@ public class Board
 				downright=true;
 				break;
 			}
-			b=x+a;
-			c=y-a;
+			b++;
+			c--;
 		}
 		b=x-1;
 		c=y-1;
-		for(int a = 1; b>=0&&c>=0; a++)
+		while(b>=0&&c>=0)
 		{
 			if(chart[b][c]==BLANK)
 				break;
@@ -162,8 +162,8 @@ public class Board
 				downleft=true;
 				break;
 			}
-			b=x-a;
-			c=y-a;
+			b--;
+			c--;
 		}
         
         
@@ -208,60 +208,60 @@ public class Board
 		{
 			b = x+1;
 			c = y+1;
-			for(int a = 1; b<7&&c<7; a++)
+			while(b<7&&c<7)
 			{
 				if(chart[b][c]==color)
 				{
 					break;
 				}
                 chart[b][c]=color;
-				b=x+a;
-				c=y+a;
+				b++;
+				c++;
 			}
 		}
 		if(upleft)
 		{
 			b=x-1;
 			c=y+1;
-			for(int a = 1; b>=0&&c<7; a++)
+			while(b>=0&&c<7)
 			{
 				if(chart[b][c]==color)
 				{
 					break;
 				}
                 chart[b][c]=color;
-				b=x-a;
-				c=y+a;
+				b--;
+				c++;
 			}
 		}
 		if(downright)
 		{
 			b=x+1;
 			c=y-1;
-			for(int a = 1; b<7&&c>=0; a++)
+			while(b<7&&c>=0)
 			{
 				if(chart[b][c]==color)
 				{
 					break;
 				}
                 chart[b][c]=color;
-				b=x+a;
-				c=y-a;
+				b++;
+				c--;
 			}
 		}
 		if(downleft)
 		{
 			b=x-1;
 			c=y-1;
-			for(int a = 1; b>=0&&c>=0; a++)
+			while(b>=0&&c>=0)
 			{
 				if(chart[b][c]==color)
 				{
 					break;
 				}
                 chart[b][c]=color;
-				b=x-a;
-				c=y-a;
+				b--;
+				c--;
 			}
 		}
 	}
