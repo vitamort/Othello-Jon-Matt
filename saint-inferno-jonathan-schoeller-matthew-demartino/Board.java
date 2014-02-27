@@ -139,7 +139,7 @@ public class Board
 		}
 		b=x+1;
 		c=y-1;
-		while(b<7&&c>=0)
+		while(b<8&&c>=0)
 		{
 			if(chart[b][c]==BLANK)
 				break;
@@ -520,6 +520,8 @@ public class Board
                             xcoord=x;
                             ycoord=y;
                         }
+                        if(alpha>=beta)
+                            return "" + alpha + " " + xcoord + " " + ycoord;
                     }
                 }
             }
@@ -542,6 +544,8 @@ public class Board
                             xcoord=x;
                             ycoord=y;
                         }
+                        if(alpha>=beta)
+                            return "" + beta + " " + xcoord + " " + ycoord;
                     }
                 }
             }
