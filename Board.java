@@ -111,7 +111,7 @@ public class Board
 		}
 		int b = x+1;
 		int c = y+1;
-		while(b<7&&c<7)
+		while(b<8&&c<8)
 		{
 			if(chart[b][c]==BLANK)
 				break;
@@ -125,7 +125,7 @@ public class Board
 		}
 		b=x-1;
 		c=y+1;
-		while(b>=0&&c<7)
+		while(b>=0&&c<8)
 		{
 			if(chart[b][c]==BLANK)
 				break;
@@ -208,7 +208,7 @@ public class Board
 		{
 			b = x+1;
 			c = y+1;
-			while(b<7&&c<7)
+			while(b<8&&c<8)
 			{
 				if(chart[b][c]==color)
 				{
@@ -223,7 +223,7 @@ public class Board
 		{
 			b=x-1;
 			c=y+1;
-			while(b>=0&&c<7)
+			while(b>=0&&c<8)
 			{
 				if(chart[b][c]==color)
 				{
@@ -238,7 +238,7 @@ public class Board
 		{
 			b=x+1;
 			c=y-1;
-			while(b<7&&c>=0)
+			while(b<8&&c>=0)
 			{
 				if(chart[b][c]==color)
 				{
@@ -333,9 +333,9 @@ public class Board
     public static int moveCount(Board board, char color)
     {
         int count = 0;
-        for(int i = 0; i<7; i++)
+        for(int i = 0; i<8; i++)
 		{
-			for(int j=0; j<7; j++)
+			for(int j=0; j<8; j++)
 			{
 				//System.out.println("Checking (i,j) = "+"("+i+","+j+")");
 				if(board.isLegalMove(i,j,board.COMPUTER))
@@ -404,7 +404,7 @@ public class Board
 		int c = y+1;
         if(x!=7&&y!=7)
             if(chart[b][c]!=BLANK&&chart[b][c]!=color)
-                while(b<7&&c<7)
+                while(b<8&&c<8)
                 {
                     if(chart[b][c]==BLANK)
                         break;
@@ -419,7 +419,7 @@ public class Board
 		c=y+1;
         if(x!=0&&y!=7)
             if(chart[b][c]!=BLANK&&chart[b][c]!=color)
-                while(b>=0&&c<7)
+                while(b>=0&&c<8)
                 {
                     if(chart[b][c]==BLANK)
                         break;
@@ -434,7 +434,7 @@ public class Board
         c=y-1;
         if(x!=7&&y!=0)
             if(chart[b][c]!=BLANK&&chart[b][c]!=color)
-                while(b<7&&c>=0)
+                while(b<8&&c>=0)
                 {
                     
                     if(chart[b][c]==BLANK)
