@@ -271,8 +271,8 @@ public class Board
         int value = 0;
         int computer =0;
         int player =0;
-        computer+=5 * Board.onWallsAndCorners(x, x.COMPUTER);
-        player+=5 * Board.onWallsAndCorners(x, x.PLAYER);
+        computer+=10 * Board.onWallsAndCorners(x, x.COMPUTER);
+        player+=10 * Board.onWallsAndCorners(x, x.PLAYER);
         computer+=3 * moveCount(x, x.COMPUTER);
         player+=3 * moveCount(x, x.PLAYER);
         int numCompPieces = x.getCount(x.COMPUTER);
