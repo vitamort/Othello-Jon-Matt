@@ -499,7 +499,7 @@ public class Board
 	
 	public String AlphaBeta(Board state, int depth, int depthLimit, int alpha, int beta, char player)
     {
-        if(depth==depthLimit)
+        if(depth==depthLimit||(moveCount(state, player)+moveCount(state, state.not(player)))==0)
             return ""+Board.utilityOf(state);
         int xcoord=0;
         int ycoord=0;
