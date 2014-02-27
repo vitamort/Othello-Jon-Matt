@@ -278,23 +278,23 @@ public class Board
         int numCompPieces = x.getCount(x.COMPUTER);
         int numPlayerPieces= x.getCount(x.PLAYER);
         int numTotalPieces = numCompPieces + numPlayerPieces;
-
+        
         //It becomes more important to have more pieces as we get later into the game.
         int turnWeight = ((int) (Math.log(numTotalPieces)/Math.log(2)) ) - 1;
-
+        
         player += turnWeight*numPlayerPieces;
         computer += turnWeight*numCompPieces;
-
+        
         value = computer-player;
 		/*
 		 * Assuming that white is the player, and black is the opponent, here are the good and bad things:
-		 * 
+		 *
 		 * GOOD
 		 * 	W piece can capture Black-i feel this is the same as
          *                           subtracting the # of black moves
          *                           from the white moves
 		 * 	W Wins-feel this is a given, but does not need to be stressed
-		 * 
+		 *
 		 * BAD
 		 * 	B can capture W
 		 * 	B Wins-feel this is a given, but does not need to be stressed
@@ -390,77 +390,77 @@ public class Board
                     }
                 }
         if(y!=7)
-        if(chart[x][y+1]!=BLANK&&chart[x][y+1]!=color)
-		for(int a = y+1; a<8; a++)
-		{
-			if(chart[x][a]==BLANK)
-				break;
-			if(chart[x][a]==color)
-			{
-				return true;
-			}
-		}
+            if(chart[x][y+1]!=BLANK&&chart[x][y+1]!=color)
+                for(int a = y+1; a<8; a++)
+                {
+                    if(chart[x][a]==BLANK)
+                        break;
+                    if(chart[x][a]==color)
+                    {
+                        return true;
+                    }
+                }
 		int b = x+1;
 		int c = y+1;
         if(x!=7&&y!=7)
-        if(chart[b][c]!=BLANK&&chart[b][c]!=color)
-		for(int a = 2; b<7&&c<7; a++)
-		{
-			if(chart[b][c]==BLANK)
-				break;
-			if(chart[b][c]==color)
-			{
-				return true;
-			}
-			b=x+a;
-			c=y+a;
-		}
+            if(chart[b][c]!=BLANK&&chart[b][c]!=color)
+                while(b<7&&c<7)
+                {
+                    if(chart[b][c]==BLANK)
+                        break;
+                    if(chart[b][c]==color)
+                    {
+                        return true;
+                    }
+                    b++;
+                    c++;
+                }
 		b=x-1;
 		c=y+1;
         if(x!=0&&y!=7)
-        if(chart[b][c]!=BLANK&&chart[b][c]!=color)
-		for(int a = 2; b>=0&&c<7; a++)
-		{
-			if(chart[b][c]==BLANK)
-				break;
-			if(chart[b][c]==color)
-			{
-				return true;
-			}
-			b=x-a;
-			c=y+a;
-		}
+            if(chart[b][c]!=BLANK&&chart[b][c]!=color)
+                while(b>=0&&c<7)
+                {
+                    if(chart[b][c]==BLANK)
+                        break;
+                    if(chart[b][c]==color)
+                    {
+                        return true;
+                    }
+                    b--;
+                    c++;
+                }
         b=x+1;
         c=y-1;
         if(x!=7&&y!=0)
-        if(chart[b][c]!=BLANK&&chart[b][c]!=color)
-		for(int a = 2; b<7&&c>=0; a++)
-		{
-			
-			if(chart[b][c]==BLANK)
-				break;
-			if(chart[b][c]==color)
-			{
-				return true;
-			}
-            b=x+a;
-            c=y-a;
-		}
+            if(chart[b][c]!=BLANK&&chart[b][c]!=color)
+                while(b<7&&c>=0)
+                {
+                    
+                    if(chart[b][c]==BLANK)
+                        break;
+                    if(chart[b][c]==color)
+                    {
+                        return true;
+                    }
+                    b++;
+                    c--;
+                }
 		b=x-1;
 		c=y-1;
         if(x!=0&&y!=0)
-        if(chart[b][c]!=BLANK&&chart[b][c]!=color)
-		for(int a = 2; b>=0&&c>=0; a++)
-		{
-			if(chart[b][c]==BLANK)
-				break;
-			if(chart[b][c]==color)
-			{
-				return true;
-			}
-			b=x-a;
-			c=y-a;
-		}
+            if(chart[b][c]!=BLANK&&chart[b][c]!=color)
+                while(b>=0&&c>=0)
+                {
+                    if(chart[b][c]==BLANK)
+                        break;
+                    if(chart[b][c]==color)
+                    {
+                        return true;
+                    }
+                    b--;
+                    c--;
+                }
 		return false;
 	}
     
