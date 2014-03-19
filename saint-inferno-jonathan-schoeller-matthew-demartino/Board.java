@@ -542,7 +542,10 @@ public class Board
                     {
                         Board board = new Board(state);
                         board.input(x, y, PLAYER);
-                        int temp =Integer.parseInt((AlphaBeta(board, depth+1,  depthLimit, alpha, beta, COMPUTER).split(" "))[0]);//may not compile, if it doesn't, move array out
+                        String next = (AlphaBeta(board, depth+1,  depthLimit, alpha, beta, PLAYER).split(" "))[0];
+                        if(next.equals("time"))
+                            return next;
+                        int temp =Integer.parseInt();
                         if(temp<beta)
                         {
                             beta=temp;
