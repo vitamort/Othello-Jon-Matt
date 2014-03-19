@@ -518,7 +518,7 @@ public class Board
                         String next = (AlphaBeta(board, depth+1,  depthLimit, startTime, timeElapsed(startTime), timeLimit, alpha, beta, PLAYER).split(" "))[0];
                         if(next.equals("time"))
                             return next;
-                        int temp =Integer.parseInt();
+                        int temp =Integer.parseInt(next);
                         if(temp>alpha)
                         {
                             alpha=temp;
@@ -545,7 +545,7 @@ public class Board
                         String next = (AlphaBeta(board, depth+1,  depthLimit, startTime, timeElapsed(startTime), timeLimit, alpha, beta, PLAYER).split(" "))[0];
                         if(next.equals("time"))
                             return next;
-                        int temp =Integer.parseInt();
+                        int temp =Integer.parseInt(next);
                         if(temp<beta)
                         {
                             beta=temp;
