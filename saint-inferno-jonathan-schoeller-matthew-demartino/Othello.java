@@ -113,7 +113,15 @@ public class Othello
             coords[0] = -1; coords[1]=0;
             return coords;
         }
-        String move = board.AlphaBeta(board, 0, depthLimit, Integer.MIN_VALUE, Integer.MAX_VALUE, COMPUTER);
+        
+        String move = "";
+        //while(true)
+        //{
+        //  String temp = board.AlphaBeta(board, 0, depthLimit, timeSinceStart, timeLimit1, Integer.MIN_VALUE, Integer.MAX_VALUE, COMPUTER);
+        //  if(temp.equals("time")
+        //      break;
+        //  move=temp;
+        //}
         String[] strings = move.split(" ");
         coords[0]=Integer.parseInt(strings[1]);
         coords[1]=Integer.parseInt(strings[2]);

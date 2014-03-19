@@ -497,10 +497,12 @@ public class Board
 		return true;
 	}
 	
-	public String AlphaBeta(Board state, int depth, int depthLimit, int alpha, int beta, char player)
+	public String AlphaBeta(Board state, int depth, int depthLimit, int timeSinceStart, int timeLimit, int alpha, int beta, char player)
     {
         if(depth==depthLimit||(moveCount(state, player)+moveCount(state, state.not(player)))==0)
             return ""+Board.utilityOf(state);
+        if((timeLimit-timeSinceStart)<(10*depth))
+            return "time";
         int xcoord=0;
         int ycoord=0;
         if(player==COMPUTER)
@@ -513,7 +515,10 @@ public class Board
                     {
                         Board board = new Board(state);
                         board.input(x, y, COMPUTER);
-                        int temp =Integer.parseInt((AlphaBeta(board, depth+1,  depthLimit, alpha, beta, PLAYER).split(" "))[0]);//may not compile, if it doesn't, move array out
+                        String next = (AlphaBeta(board, depth+1,  depthLimit, alpha, beta, PLAYER).split(" "))[0];
+                        if(next.equals("time"))
+                            return next;
+                        int temp =Integer.parseInt();
                         if(temp>alpha)
                         {
                             alpha=temp;
@@ -552,6 +557,7 @@ public class Board
             return "" + beta + " " + xcoord + " " + ycoord;
         }
     }
+    
 	public void print()
 	{
 		System.out.println(" | 01234567");
