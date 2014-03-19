@@ -15,8 +15,8 @@ public class Othello
 	static char COMPUTER;
 	static Board board;
     static int depthLimit=-1;
-    static int timeLimit1;
-    static int timeLimit2;
+    static long timeLimit1;
+    static long timeLimit2;
     
 	public static void main(String[] args)
 	{
@@ -28,8 +28,8 @@ public class Othello
 		String[] input = inputStr.split(" ");
 		boolean computerGoesFirst = (input[1].toLowerCase().charAt(0) == 'b');
 		depthLimit = Integer.parseInt(input[2]);
-		timeLimit1 = Integer.parseInt(input[3]);
-		timeLimit2 = Integer.parseInt(input[4]);
+		timeLimit1 = (long) Integer.parseInt(input[3]);
+		timeLimit2 = (long) Integer.parseInt(input[4]);
         
 		//Set the pieces for the computer and player
 		if(computerGoesFirst)
@@ -45,10 +45,11 @@ public class Othello
 		board = new Board(PLAYER, COMPUTER, BOARDSIZE);
 		//board.print();
         
+        long startTime = System.currentTimeMillis();
 		//Let the computer go first if it's supposed to
 		if(computerGoesFirst)
 		{
-			int[] coords = computerMove();
+			int[] coords = computerMove(startTime);
 			board.input(coords[0], coords[1], COMPUTER);
             System.out.println(coords[0] + " " + coords[1]);
 			//board.print();
@@ -87,6 +88,7 @@ public class Othello
 			//board.print();
             
 			//Computer Move
+			startTime = System.currentTimeMillis();
 			int[] coords = computerMove();
 			computerPass = (coords[0] == -1);
 			if(!computerPass)
@@ -102,7 +104,7 @@ public class Othello
 		announceGameWinner();
 	}
     
-	public static int[] computerMove()
+	public static int[] computerMove(long start)
 	{
 		int[] coords = new int[2];
         
@@ -115,13 +117,17 @@ public class Othello
         }
         
         String move = "";
-        //while(true)
-        //{
-        //  String temp = board.AlphaBeta(board, 0, depthLimit, timeSinceStart, timeLimit1, Integer.MIN_VALUE, Integer.MAX_VALUE, COMPUTER);
-        //  if(temp.equals("time")
-        //      break;
-        //  move=temp;
-        //}
+        
+        /*
+        while(true)
+        {
+          String temp = board.AlphaBeta(board, 0, depthLimit, start, timeElapsed(start), timeLimit1, Integer.MIN_VALUE, Integer.MAX_VALUE, COMPUTER);
+         if(temp.equals("time") )
+              break;
+          move=temp;
+        }
+		*/
+
         String[] strings = move.split(" ");
         coords[0]=Integer.parseInt(strings[1]);
         coords[1]=Integer.parseInt(strings[2]);
@@ -139,6 +145,11 @@ public class Othello
         else
             System.out.println("It is a tie");
         
+	}
+
+	public static long timeElapsed(long then)
+	{
+		return System.currentTimeMillis() - then;
 	}
     
 }
