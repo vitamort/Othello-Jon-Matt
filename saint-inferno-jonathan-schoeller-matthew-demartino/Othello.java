@@ -89,7 +89,7 @@ public class Othello
             
 			//Computer Move
 			startTime = System.currentTimeMillis();
-			int[] coords = computerMove();
+			int[] coords = computerMove(startTime);
 			computerPass = (coords[0] == -1);
 			if(!computerPass)
 			{
