@@ -28,9 +28,10 @@ public class Othello
 		String[] input = inputStr.split(" ");
 		boolean computerGoesFirst = (input[1].toLowerCase().charAt(0) == 'b');
 		depthLimit = Integer.parseInt(input[2]);
-		timeLimit1 = (long) Integer.parseInt(input[3]);
-		timeLimit2 = (long) Integer.parseInt(input[4]);
-        
+		timeLimit1 = ((long) Integer.parseInt(input[3]))/1000;
+		timeLimit2 = ((long) Integer.parseInt(input[4]))/1000;
+        if(timeLimit2>0)
+            timeLimit1=timeLimit2/60;
 		//Set the pieces for the computer and player
 		if(computerGoesFirst)
 		{
@@ -118,7 +119,7 @@ public class Othello
         
         String move = "";
         
-        /*
+        long start = System.currentTimeMillis();
         while(true)
         {
           String temp = board.AlphaBeta(board, 0, depthLimit, start, timeElapsed(start), timeLimit1, Integer.MIN_VALUE, Integer.MAX_VALUE, COMPUTER);
@@ -126,7 +127,7 @@ public class Othello
               break;
           move=temp;
         }
-		*/
+		
 
         String[] strings = move.split(" ");
         coords[0]=Integer.parseInt(strings[1]);

@@ -501,7 +501,7 @@ public class Board
     {
         if(depth==depthLimit||(moveCount(state, player)+moveCount(state, state.not(player)))==0)
             return ""+Board.utilityOf(state);
-        if((timeLimit-timeSinceStart)<(10*depth))
+        if((timeLimit-timeSinceStart)<(10*depth/1000))
             return "time";
         int xcoord=0;
         int ycoord=0;
