@@ -28,6 +28,10 @@ public class Othello
 		String[] input = inputStr.split(" ");
 		boolean computerGoesFirst = (input[1].toLowerCase().charAt(0) == 'b');
 		depthLimit = Integer.parseInt(input[2]);
+		if (depthLimit == 0)
+		{
+			depthLimit = Integer.MAX_VALUE;
+		}
 		timeLimit1 = ((long) Integer.parseInt(input[3]));
 		timeLimit2 = ((long) Integer.parseInt(input[4]));
         if(timeLimit2>0)
@@ -44,7 +48,7 @@ public class Othello
         
 		//Initialize the gameboard
 		board = new Board(PLAYER, COMPUTER, BOARDSIZE);
-		//board.print();
+		board.print();
         
         long startTime = System.currentTimeMillis();
 		//Let the computer go first if it's supposed to
@@ -53,7 +57,7 @@ public class Othello
 			int[] coords = computerMove(startTime);
 			board.input(coords[0], coords[1], COMPUTER);
             System.out.println(coords[0] + " " + coords[1]);
-			//board.print();
+			board.print();
 		}
         
 		int x=0, y=0;
@@ -86,7 +90,7 @@ public class Othello
 					//System.out.println("That move is not legal. Choose another move.");
 				}
 			}while(!legalMove);
-			//board.print();
+			board.print();
             
 			//Computer Move
 			startTime = System.currentTimeMillis();
@@ -99,7 +103,7 @@ public class Othello
 			}else{
 				System.out.println("pass");
 			}
-			//board.print();
+			board.print();
 		}
         
 		announceGameWinner();
