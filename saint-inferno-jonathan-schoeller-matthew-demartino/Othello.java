@@ -119,9 +119,9 @@ public class Othello
         
         String move = "";
         
-        while(true)
+        for(int i = 1; i>0; i++)
         {
-          String temp = board.AlphaBeta(board, 0, depthLimit, start, timeElapsed(start), timeLimit1, Integer.MIN_VALUE, Integer.MAX_VALUE, COMPUTER);
+          String temp = board.AlphaBeta(board, i, depthLimit, start, timeElapsed(start), timeLimit1, Integer.MIN_VALUE, Integer.MAX_VALUE, COMPUTER);
          if(temp.equals("time") )
               break;
           move=temp;
