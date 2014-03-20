@@ -496,18 +496,15 @@ public class Board
         
 		return true;
 	}
-	
 	public String AlphaBeta(Board state, int depth, int depthLimit, long startTime, long timeSinceStart, long timeLimit, int alpha, int beta, char player)
     {
-
     	//Testing stuff:
-
     	//System.out.println(timeLimit);
-    	System.out.println(timeSinceStart);
+    	//System.out.println(timeSinceStart);
     	if(timeLimit - timeSinceStart < 10)
     	{
-    		System.out.println("Time left is " + (timeLimit - timeSinceStart) );
-    		System.out.println("TIME UP");
+    		//System.out.println("Time left is " + (timeLimit - timeSinceStart) );
+    		//System.out.println("TIME UP");
     		return "time";
     	}
     	//End Testing Stuff

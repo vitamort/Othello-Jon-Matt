@@ -35,7 +35,7 @@ public class Othello
 		timeLimit1 = ((long) Integer.parseInt(input[3]));
 		timeLimit2 = ((long) Integer.parseInt(input[4]));
         if(timeLimit2>0)
-            timeLimit1=timeLimit2/60;
+            timeLimit1=timeLimit2/30;
 		//Set the pieces for the computer and player
 		if(computerGoesFirst)
 		{
@@ -48,7 +48,7 @@ public class Othello
         
 		//Initialize the gameboard
 		board = new Board(PLAYER, COMPUTER, BOARDSIZE);
-		board.print();
+		//board.print();
         
         long startTime = System.currentTimeMillis();
 		//Let the computer go first if it's supposed to
@@ -57,7 +57,7 @@ public class Othello
 			int[] coords = computerMove(startTime);
 			board.input(coords[0], coords[1], COMPUTER);
             System.out.println(coords[0] + " " + coords[1]);
-			board.print();
+			//board.print();
 		}
         
 		int x=0, y=0;
@@ -90,7 +90,7 @@ public class Othello
 					//System.out.println("That move is not legal. Choose another move.");
 				}
 			}while(!legalMove);
-			board.print();
+			//board.print();
             
 			//Computer Move
 			startTime = System.currentTimeMillis();
@@ -103,7 +103,7 @@ public class Othello
 			}else{
 				System.out.println("pass");
 			}
-			board.print();
+			//board.print();
 		}
         
 		announceGameWinner();
@@ -122,14 +122,16 @@ public class Othello
         }
         
         String move = "";
-        
-        for(int i = 1; i>0; i++)
-        {
-          String temp = board.AlphaBeta(board, i, depthLimit, start, timeElapsed(start), timeLimit1, Integer.MIN_VALUE, Integer.MAX_VALUE, COMPUTER);
-         if(temp.equals("time") )
-              break;
-          move=temp;
-        }
+        if(depthLimit==Integer.MAX_VALUE)
+            for(int i = 0; i< Integer.MAX_VALUE; i++)
+            {
+                String temp = board.AlphaBeta(board, 0, i, start, timeElapsed(start), timeLimit1, Integer.MIN_VALUE, Integer.MAX_VALUE, COMPUTER);
+                if(temp.equals("time") )
+                    break;
+                move=temp;
+            }
+        else
+            move = board.AlphaBeta(board, 0, depthLimit, 0, 0, (long)Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MAX_VALUE, COMPUTER);
 		
 
         String[] strings = move.split(" ");
