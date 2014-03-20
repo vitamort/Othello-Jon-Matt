@@ -499,10 +499,23 @@ public class Board
 	
 	public String AlphaBeta(Board state, int depth, int depthLimit, long startTime, long timeSinceStart, long timeLimit, int alpha, int beta, char player)
     {
+
+    	//Testing stuff:
+
+    	//System.out.println(timeLimit);
+    	System.out.println(timeSinceStart);
+    	if(timeLimit - timeSinceStart < 10)
+    	{
+    		System.out.println("Time left is " + (timeLimit - timeSinceStart) );
+    		System.out.println("TIME UP");
+    		return "time";
+    	}
+    	//End Testing Stuff
+
         if(depth==depthLimit||(moveCount(state, player)+moveCount(state, state.not(player)))==0)
             return ""+Board.utilityOf(state);
-        if((timeLimit-timeSinceStart)<(10*depth/1000))
-            return "time";
+        //if((timeLimit-timeSinceStart)<(10*depth/1000))
+        //    return "time";
         int xcoord=0;
         int ycoord=0;
         if(player==COMPUTER)

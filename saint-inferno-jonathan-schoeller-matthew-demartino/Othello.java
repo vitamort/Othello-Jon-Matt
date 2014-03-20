@@ -28,8 +28,8 @@ public class Othello
 		String[] input = inputStr.split(" ");
 		boolean computerGoesFirst = (input[1].toLowerCase().charAt(0) == 'b');
 		depthLimit = Integer.parseInt(input[2]);
-		timeLimit1 = ((long) Integer.parseInt(input[3]))/1000;
-		timeLimit2 = ((long) Integer.parseInt(input[4]))/1000;
+		timeLimit1 = ((long) Integer.parseInt(input[3]));
+		timeLimit2 = ((long) Integer.parseInt(input[4]));
         if(timeLimit2>0)
             timeLimit1=timeLimit2/60;
 		//Set the pieces for the computer and player
