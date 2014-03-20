@@ -119,7 +119,6 @@ public class Othello
         
         String move = "";
         
-        long start = System.currentTimeMillis();
         while(true)
         {
           String temp = board.AlphaBeta(board, 0, depthLimit, start, timeElapsed(start), timeLimit1, Integer.MIN_VALUE, Integer.MAX_VALUE, COMPUTER);
